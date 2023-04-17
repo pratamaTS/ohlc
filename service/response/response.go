@@ -16,3 +16,22 @@ func Response(c *gin.Context, statusCode int, message string, err error) {
 	c.IndentedJSON(statusCode, resp)
 	return
 }
+
+func ResponseData(c *gin.Context, statusCode int, message string, err error, data []map[string]any) {
+	resp := map[string]any{
+		"error":   false,
+		"message": message,
+	}
+
+	if err != nil {
+		resp["error"] = true
+		resp["message"] = err.Error()
+	}
+
+	if len(data) > 0 {
+		resp["data"] = data
+	}
+
+	c.IndentedJSON(statusCode, resp)
+	return
+}
