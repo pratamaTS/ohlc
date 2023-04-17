@@ -1,11 +1,12 @@
 package main
 
 import (
+	"my-project/ohlc-service/service/response"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 func HealthHandler(c *gin.Context) {
-	SuccessResponse(c, http.StatusOK, "OK")
+	response.Response(c, http.StatusOK, "OK", nil)
 }
